@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "poppins";
+    color: #fff;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #25252b;
+}
+
+.container{
+    position: relative;
+    width: 750px;
+    height: 450px;
+    display: flex;
+    border: 2px solid #00ebfe;
+    box-shadow: 0 0 25px #00ebfe;
+    overflow: hidden;
+}
+
+.container .login-form{
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+} 
+
+.container .register-form{
+    position: absolute;
+    top: 0;
+    right: 0; 
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+} 
+
+.login-form {
+    left: 0;
+    padding: 0 40px;
+}
+.login-form h2{
+    font-size: 32px;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
+}
+
+.login-form .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-top: 25px;
+}
+
+.register-form {
+    right: 0;
+    padding: 0 40px;
+}
+.register-form h2{
+    font-size: 32px;
+    text-align: center;
+}
+.register-form .input-box{
+    position: relative;
+    width: 100%;
+    height: 45px;
+    margin-top: 15px;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 2px solid #fff;
+    padding-right: 23px;
+}
+.input-box input:focus,
+.input-box input:valid{
+    border-bottom: 2px solid #00ebfe;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: -5px; 
+    color: #00ebfe;
+}
+.input-box i{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    font-size: 18px;
+    transform: translateY(-50%);
+    transition: .5s;
+}
+.input-box input:focus ~ i, 
+.input-box input:valid ~ i{
+    color: #00ebfe;
+}
+.linkF{
+    font-size: 14px;
+    text-align: right;
+    margin: 10px 0 10px;
+}
+.linkF a{
+    text-decoration: none;
+    color: #00ebfe;
+    font-weight: 600;
+}
+.linkF a:hover{
+    text-decoration: underline;
+}
+.btn{
+    position: relative;
+    width: 100%;
+    height:  45px;
+    background: transparent;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    border: 2px solid #00ebfe;
+    overflow: hidden;
+    z-index: 1;
+}
+.btn::before{
+    content: "";
+    position: absolute;
+    height: 300%;
+    width: 100%;
+    background: linear-gradient(#25252b,#00ebfe,#25252b,#00ebfe);
+    top: -100%;
+    left: 0;
+    z-index: -1;
+    transition: .5s;
+}
+.btn:hover::before{
+    top: 0;
+}
+.link{
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 10px;
+}
+.link a{
+    text-decoration: none;
+    color: #00ebfe;
+    font-weight: 600;
+}
+.link a:hover{
+    text-decoration: underline;
+}
+
+.info-content{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.info-content.Login{
+    right: 0;
+    text-align: right;
+    padding: 0 40px 60px 150px;
+}
+.info-content h2{
+    text-transform: uppercase;
+    font-size: 36px;
+    line-height: 1.3;
+}
+.info-content p{
+    font-size: 16px;
+}
+
+.info-content2{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.info-content2.register{
+    left: 0;
+    text-align: left;
+    padding: 0px 40px 70px ;
+}
+.info-content2 h2{
+    text-transform: uppercase;
+    font-size: 36px;
+    line-height: 1.3;
+}
+.info-content2 p{
+    font-size: 16px;
+}
+
+.container .curved-shape{
+    position: absolute;
+    right: 0;
+    top: -5px;
+    height: 600px;
+    width: 850px;
+    background: linear-gradient(45deg,#25252b,#00ebfe);
+    transform: rotate(10deg) skewY(40deg);
+    transform-origin: bottom right;
+}
+
+.container .curved-shape2 {
+    position: absolute;
+    left:250px;
+    top: 100%;
+    height: 700px;
+    width: 850px;
+    background-color: #25252b;
+    transform: rotate(-11deg) skewY(-41deg); 
+    transform-origin: bottom left;
+}
+
+.container .curved-shape1{
+    position: absolute;
+    right: 0;
+    top: -5px;
+    height: 600px;
+    width: 850px;
+    background: linear-gradient(45deg,#25252b,#00ebfe);
+    transform: rotate(0deg) skewY(0deg);
+    transform-origin: bottom right;
+}

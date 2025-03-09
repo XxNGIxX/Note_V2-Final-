@@ -1,0 +1,102 @@
+#include <Keypad.h>
+#include <EEPROM.h>
+
+const byte ROWS = 4; //four rows
+const byte COLS = 4; //four columns
+
+char keys[ROWS][COLS] = {
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}
+};
+
+byte rowPins[ROWS] = {9, 8, 7, 6};
+byte colPins[COLS] = {5, 4, 3, 2};
+Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+
+String key_in = "";  
+String pwd = "";
+
+void setup() {
+  
+  Serial.begin(9600);
+  pinMode(LED_BUILTIN, OUTPUT);
+  
+
+  
+  EEPROM.write(0, '1');
+  EEPROM.write(1, '2');
+  EEPROM.write(2, '3');
+  EEPROM.write(3, '4');
+  
+  
+  pwd += char(EEPROM.read(0));
+  pwd += char(EEPROM.read(1));
+  pwd += char(EEPROM.read(2));
+  pwd += char(EEPROM.read(3));
+  
+  
+  //Serial.println(pwd);
+  Serial.println("--Tip--");
+  Serial.println("Enter C for Clear input");
+  Serial.println("Chang Password *New-Password");
+  Serial.println("--*--");
+  Serial.println("Please Enter Key : ");
+  
+}
+
+void loop() {
+  char key = keypad.getKey();  
+
+  if (key != NO_KEY) {  
+    Serial.print(key);  
+
+    if (key == 'C') { 
+      key_in = "";
+      Serial.println("\n");
+    } 
+    else if (key_in.length() < 4) {
+      key_in += key; 
+
+      if (key_in.length() == 4) {
+        String pwd = "";
+        
+        for (int i = 0; i < 4; i++) {
+          pwd += char(EEPROM.read(i));
+        }
+
+        if (key_in == pwd) {
+          Serial.println("\nCorrect password!");
+          digitalWrite(LED_BUILTIN, HIGH);
+          delay(250);
+          digitalWrite(LED_BUILTIN, LOW);
+          delay(500);
+        } else {
+          Serial.println("\nIncorrect password!");
+        }
+
+        
+        key_in = "";
+      }
+    }
+
+    
+    if (key == '*') {
+      Serial.println("Changing password...");
+      String new_pwd = "";
+      while (new_pwd.length() < 4) {
+        char new_key = keypad.getKey();
+        if (new_key != NO_KEY) {
+          new_pwd += new_key; 
+          Serial.print(new_key);  
+        }
+      }
+      
+      for (int i = 0; i < 4; i++) {
+        EEPROM.write(i, new_pwd[i]);
+      }
+      Serial.println("\nPassword changed successfully!");
+    }
+  }
+}
